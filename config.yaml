@@ -3,3 +3,4 @@ paths:
 
 preprocessing:
   numOfMFCCoeffs: 40
+  hopLength: 512
