@@ -5,3 +5,4 @@
 /notebooks/.ipynb_checkpoints
 /etc
 /melSpectograms
+/utils/__pycache__
