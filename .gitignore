@@ -4,5 +4,6 @@
 /share
 /notebooks/.ipynb_checkpoints
 /etc
-/melSpectograms
+/melSpectrograms
 /utils/__pycache__
+/notebooks/tpg-skill-issue-v2 (1).ipynb

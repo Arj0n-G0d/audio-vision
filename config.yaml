@@ -1,5 +1,6 @@
 paths:
-  urbanSound8K: "/home/g0d/Downloads/urbanSound8K"
+  audioData: "/home/g0d/Downloads/UrbanSound8K"
+  imageData: "/home/g0d/Desktop/audio-vision/melSpectrograms/UrbanSound8K"
 
 preprocessing:
   numOfMFCCoeffs: 40

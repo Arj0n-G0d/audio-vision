@@ -1,8 +1,11 @@
-import os
+from dask import delayed
 import numpy as np
 import librosa as lb
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import yaml
+import os
 
 with open("config.yaml") as file :
     config = yaml.safe_load(file)
@@ -10,6 +13,7 @@ with open("config.yaml") as file :
 hopLength = config["preprocessing"]["hopLength"]
 melSpectrogramsFolder = config["preprocessing"]["melSpectrogramsFolder"]
 
+@delayed
 def convertAudioFileToMelSpectrogram(audioFilePath, melSpectrogramFilePath) :
     print(f"🎵 Processing: {os.path.basename(audioFilePath)}")
 

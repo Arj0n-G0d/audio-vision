@@ -1,20 +1,15 @@
+import pandas as pd
+from pathlib import Path
 import os
 import yaml
-from pathlib import Path
 
 with open("config.yaml") as file :
     config = yaml.safe_load(file)
 
 audioExtensions = config["preprocessing"]["audioExtensions"]
 melSpectrogramsFolder = config["preprocessing"]["melSpectrogramsFolder"]
-
-def findAudioFilePaths(datasetPath) :
-    path = Path(datasetPath)
-    audioFilePaths = []
-    
-    for ext in audioExtensions:
-        audioFilePaths.extend(path.rglob(f"*{ext}"))
-    return audioFilePaths
+dirPath = config["paths"]["audioData"]
+csvPath = os.path.join(dirPath, "dataset.csv")
 
 def createMelSpectrogramsFolderForGivenDataset(datasetName) :
     if not os.path.exists(melSpectrogramsFolder) :
@@ -22,4 +17,10 @@ def createMelSpectrogramsFolderForGivenDataset(datasetName) :
     
     if not os.path.exists(os.path.join(melSpectrogramsFolder, datasetName)) :
         os.makedirs(os.path.join(melSpectrogramsFolder, datasetName))
-    
+
+    df = pd.read_csv(csvPath)
+    classes = df["class"].unique()
+
+    for className in classes :
+        if not os.path.exists(os.path.join(melSpectrogramsFolder, datasetName, className)) :
+            os.makedirs(os.path.join(melSpectrogramsFolder, datasetName, className))
